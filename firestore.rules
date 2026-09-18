@@ -1,0 +1,21 @@
+rules_version = '2';
+
+/**
+ * REGRAS DE SEGURANÇA DO FIRESTORE (MODO DE TESTE)
+ * 
+ * ATENÇÃO INSTRUTOR / DESENVOLVEDOR:
+ * Estas regras permitem que QUALQUER USUÁRIO leia e escreva livremente em qualquer documento.
+ * Elas foram configuradas no modo de teste temporário para fins didáticos e desenvolvimento.
+ * 
+ * NUNCA utilize estas regras em ambiente de produção sem implementar
+ * autenticação de usuários e validação de permissões baseada em regras seguras!
+ */
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Permite leitura e escrita pública para todas as coleções temporariamente
+    match /{document=**} {
+      allow read, write: if true;
+    }
+  }
+}

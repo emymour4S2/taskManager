@@ -1,0 +1,6 @@
+{
+  "name": "Taskflow - Gerenciador de Tarefas",
+  "description": "Aplicativo web simples de gerenciamento de tarefas conectado ao Firebase Firestore com JavaScript Vanilla.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

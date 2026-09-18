@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taskflow - Gerenciador de Tarefas</title>
+  <meta name="description" content="Aplicativo simples de gerenciamento de tarefas conectado em tempo real ao Firebase Firestore.">
+  <meta property="og:title" content="Taskflow - Gerenciador de Tarefas">
+  <meta property="og:description" content="Aplicativo simples de gerenciamento de tarefas conectado em tempo real ao Firebase Firestore.">
+  
+  <!-- Fonte do Design System (Kinetic Clarity / Taskflow) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Folha de estilo em CSS puro -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-wrapper">
+    <!-- Cartão Principal do Aplicativo -->
+    <main class="app-card" id="taskflowApp">
+      
+      <!-- Cabeçalho com Logotipo inspirado no print -->
+      <header class="app-header">
+        <div class="brand-logo" aria-hidden="true">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-svg">
+            <rect width="100" height="100" rx="28" fill="url(#logo-grad)"/>
+            <path d="M28 50L44 66L72 34" stroke="white" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="72" cy="30" r="6" fill="#38BDF8"/>
+            <defs>
+              <linearGradient id="logo-grad" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#6366F1"/>
+                <stop offset="1" stop-color="#4F46E5"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1 class="app-title">Taskflow</h1>
+          <p class="app-subtitle">Gerenciador de Tarefas em Tempo Real</p>
+        </div>
+      </header>
+
+      <!-- Barra informativa e status da conexão com Firestore -->
+      <section class="meta-bar">
+        <div class="status-indicator" id="statusConexao">
+          <span class="status-dot"></span>
+          <span class="status-label">Conectado ao Firestore</span>
+        </div>
+        <div class="task-counter" id="contadorTarefas">0 tarefas</div>
+      </section>
+
+      <!-- Formulário para adicionar nova tarefa -->
+      <section class="task-input-section">
+        <form class="task-form" id="formNovaTarefa" onsubmit="event.preventDefault();">
+          <div class="input-container">
+            <input 
+              type="text" 
+              id="inputTarefa" 
+              class="task-input" 
+              placeholder="O que você precisa fazer hoje?" 
+              autocomplete="off"
+              required
+            >
+          </div>
+          <button type="button" id="btnAdicionar" class="btn-primary">
+            <svg class="btn-icon" viewBox="0 0 20 20" fill="currentColor" width="18" height="18">
+              <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
+            </svg>
+            Adicionar Tarefa
+          </button>
+        </form>
+      </section>
+
+      <!-- Notificação de feedback amigável -->
+      <div id="mensagemFeedback" class="feedback-toast" style="display: none;"></div>
+
+      <!-- Lista de tarefas salvas -->
+      <section class="task-list-section">
+        <h2 class="section-title">Minhas Tarefas</h2>
+        <ul class="task-list" id="listaTarefas">
+          <!-- As tarefas salvas no Firestore serão inseridas aqui via JavaScript -->
+        </ul>
+        <div id="emptyState" class="empty-state">
+          <div class="empty-icon">📝</div>
+          <p class="empty-title">Nenhuma tarefa encontrada</p>
+          <p class="empty-desc">Digite uma tarefa no campo acima e clique em "Adicionar Tarefa".</p>
+        </div>
+      </section>
+
+      <!-- Rodapé com nota didática -->
+      <footer class="app-footer">
+        <p>Projeto Didático • HTML5, CSS3 e JavaScript Vanilla com Firebase Firestore v9+</p>
+      </footer>
+    </main>
+  </div>
+
+  <!-- Importação obrigatória do JavaScript Vanilla como Módulo -->
+  <script type="module" src="app.js"></script>
+</body>
+</html>

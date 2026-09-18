@@ -1,0 +1,441 @@
+/* ==========================================================================
+   ESTILOS GERAIS - TASKFLOW (CSS3 PURO)
+   Inspirado no Design System "Kinetic Clarity"
+   ========================================================================== */
+
+/* 1. Variáveis de Cores e Tipografia */
+:root {
+  /* Paleta Kinetic Clarity */
+  --color-primary: #6366F1;         /* Indigo vibrante */
+  --color-primary-hover: #4F46E5;   /* Indigo escuro para hover */
+  --color-primary-light: #EEF2FF;   /* Fundo suave para foco/destaque */
+  --color-secondary: #38BDF8;       /* Azul celeste */
+  --color-success: #10B981;         /* Verde esmeralda para tarefas concluídas */
+  --color-danger: #EF4444;          /* Vermelho suave para exclusão */
+  --color-danger-hover: #DC2626;
+
+  /* Neutros e Estrutura */
+  --color-bg: #F8FAFC;              /* Fundo da tela */
+  --color-surface: #FFFFFF;         /* Superfície dos cartões */
+  --color-border: #E2E8F0;          /* Bordas sutis */
+  --color-border-hover: #CBD5E1;
+  --color-text-main: #0F172A;       /* Texto principal (Slate 900) */
+  --color-text-muted: #64748B;      /* Texto secundário (Slate 500) */
+  --color-text-subtle: #94A3B8;     /* Detalhes e placeholders */
+
+  /* Tipografia */
+  --font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Elevações e Sombras */
+  --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.07), 0 2px 4px -2px rgba(15, 23, 42, 0.05);
+  --shadow-lg: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+
+  /* Raios de borda */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+}
+
+/* 2. Reset Básico e Estrutura da Página */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--color-bg);
+  color: var(--color-text-main);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 3. Container Principal */
+.app-wrapper {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.app-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: 32px;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* 4. Cabeçalho e Logotipo */
+.app-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.brand-logo {
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+}
+
+.logo-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  filter: drop-shadow(0 4px 6px rgba(99, 102, 241, 0.25));
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.app-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  letter-spacing: -0.02em;
+}
+
+.app-subtitle {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+/* 5. Barra de Metadados / Status */
+.meta-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-bg);
+  padding: 6px 12px;
+  border-radius: 9999px;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-success);
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+  animation: pulse-dot 2s infinite ease-in-out;
+}
+
+@keyframes pulse-dot {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.7;
+  }
+}
+
+.task-counter {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-weight: 700;
+}
+
+/* 6. Seção de Entrada (Input e Botão) */
+.task-input-section {
+  width: 100%;
+}
+
+.task-form {
+  display: flex;
+  gap: 12px;
+  align-items: stretch;
+}
+
+.input-container {
+  flex: 1;
+}
+
+.task-input {
+  width: 100%;
+  height: 48px;
+  padding: 0 16px;
+  font-family: inherit;
+  font-size: 0.9375rem;
+  color: var(--color-text-main);
+  background-color: var(--color-bg);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.task-input:hover {
+  border-color: var(--color-border-hover);
+}
+
+.task-input:focus {
+  background-color: var(--color-surface);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.task-input::placeholder {
+  color: var(--color-text-subtle);
+}
+
+.btn-primary {
+  height: 48px;
+  padding: 0 20px;
+  font-family: inherit;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  background-color: var(--color-primary);
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.35);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* 7. Mensagem de Feedback */
+.feedback-toast {
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 500;
+  background-color: #FEF2F2;
+  border: 1px solid #FCA5A5;
+  color: #991B1B;
+}
+
+/* 8. Seção da Lista de Tarefas */
+.task-list-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.section-title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+}
+
+.task-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Estilização individual dos itens <li> */
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.task-item:hover {
+  border-color: #CBD5E1;
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.task-content {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Botão de Conclusão / Checkbox Estilizado */
+.btn-toggle-task {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid var(--color-border-hover);
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.btn-toggle-task:hover {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary-light);
+}
+
+.task-item.completed .btn-toggle-task {
+  background-color: var(--color-success);
+  border-color: var(--color-success);
+}
+
+.task-item.completed .btn-toggle-task svg {
+  display: block;
+}
+
+.btn-toggle-task svg {
+  display: none;
+  width: 12px;
+  height: 12px;
+  stroke: #FFFFFF;
+}
+
+/* Texto da Tarefa */
+.task-text {
+  font-size: 0.9375rem;
+  color: var(--color-text-main);
+  font-weight: 500;
+  word-break: break-word;
+  transition: all 0.2s ease;
+}
+
+.task-item.completed .task-text {
+  text-decoration: line-through;
+  color: var(--color-text-subtle);
+}
+
+/* Botão de Excluir Tarefa */
+.btn-delete-task {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-subtle);
+  padding: 6px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.btn-delete-task:hover {
+  color: var(--color-danger);
+  background-color: #FEE2E2;
+}
+
+/* 9. Estado Vazio (Empty State) */
+.empty-state {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 36px 20px;
+  text-align: center;
+  background-color: var(--color-bg);
+  border: 1.5px dashed var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.empty-icon {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.empty-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+  margin-bottom: 4px;
+}
+
+.empty-desc {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  max-width: 280px;
+}
+
+/* 10. Rodapé */
+.app-footer {
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--color-text-subtle);
+  padding-top: 16px;
+  border-top: 1px solid var(--color-border);
+}
+
+/* 11. Responsividade (Dispositivos Móveis) */
+@media (max-width: 520px) {
+  body {
+    padding: 20px 12px;
+  }
+
+  .app-card {
+    padding: 20px 16px;
+    border-radius: var(--radius-lg);
+    gap: 20px;
+  }
+
+  .task-form {
+    flex-direction: column;
+  }
+
+  .btn-primary {
+    width: 100%;
+  }
+
+  .app-title {
+    font-size: 1.25rem;
+  }
+}
